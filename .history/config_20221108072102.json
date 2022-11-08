@@ -1,0 +1,26 @@
+{
+    "name": "Vinicius Atilio (Vini)",
+    "job": "Lead Software Engineer",
+    "github": "Vinicius9821",
+    "playlists": {
+        "jogos": [
+            {
+                "title": "Algum titulo",
+                "url": "url",
+                "thumb": "thumbnail do video"
+            },
+            {
+                "title": "Algum titulo",
+                "url": "url",
+                "thumb": "thumbnail do video 2"
+            }
+        ],
+        "front-end": [
+            {
+                "title": "Algum titulo",
+                "url": "url",
+                "thumb": "thumbnail do video"
+            }
+        ]
+    }
+}
