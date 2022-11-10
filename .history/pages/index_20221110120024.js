@@ -86,8 +86,8 @@ function TimeLine({ searchValue, ...props }) {
     const playlistNames = Object.keys(props.playlists);
     return (
         <StyledTimeline>
-            {playlistNames.map(function (playlistName) {
-                const videos = props.playlists[playlistName];
+            {playlistNames.map(function (playlistNames) {
+                const videos = props.playlists[playlistNames];
                 // console.log(playlistNames);
                 // console.log(videos);
                 return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import config from '../config.json';
 import styled from 'styled-components';
 import { CSSReset } from '../src/components/CSSReset';
@@ -9,7 +8,8 @@ function HomePage() {
     const estiloDaHomePage = {
         //backgroundColor: 'red'
     };
-    const [valorDoFiltro, setValorDoFiltro] = React.useState('');
+
+    const valorDoFiltro = 'frost';
 
     //console.log(config.playlists);
     return (
@@ -22,18 +22,9 @@ function HomePage() {
                     flex: 1,
                 }}
             >
-                {/* Prop Driling */}
-                <Menu
-                    valorDoFiltro={valorDoFiltro}
-                    setValorDoFiltro={setValorDoFiltro}
-                />
+                <Menu />
                 <Header />
-                <TimeLine
-                    searchValue={valorDoFiltro}
-                    playlists={config.playlists}
-                >
-                    Conteudo
-                </TimeLine>
+                <TimeLine playlists={config.playlists}>Conteudo</TimeLine>
             </div>
         </>
     );
@@ -48,6 +39,7 @@ const StyledHeader = styled.div`
         border-radius: 50%;
     }
     .user-info {
+        margin-top: 50px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -55,16 +47,9 @@ const StyledHeader = styled.div`
     }
 `;
 
-const StyledBanner = styled.div`
-    background-color: blue;
-    background-image: url(${({ bg }) => bg});
-    height: 230px;
-`;
-
 function Header() {
     return (
         <StyledHeader>
-            <StyledBanner bg={config.bg}/>
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -81,34 +66,30 @@ function Header() {
 // map converte de uma coisa para outra coisa (de objeto para objeto)
 // converter da lista de nomes para components react
 
-function TimeLine({ searchValue, ...props }) {
-    // console.log('dentro do componente', props.playlists);
+function TimeLine(props) {
+    console.log('dentro do componente', props.playlists);
     const playlistNames = Object.keys(props.playlists);
     return (
         <StyledTimeline>
-            {playlistNames.map(function (playlistName) {
-                const videos = props.playlists[playlistName];
-                // console.log(playlistNames);
-                // console.log(videos);
+            {playlistNames.map(function (playlistNames) {
+                const videos = props.playlists[playlistNames];
+                console.log(playlistNames);
+                console.log(videos);
                 return (
-                    <section key={playlistName}>
-                        <h2>{playlistName}</h2>
+                    <section>
+                        <h2>{playlistNames}</h2>
                         <div>
                             {videos
                                 .filter((video) => {
-                                    const titleNormalized = video.title.toLowerCase();
-                                    const searchValueNormalized = searchValue.toLowerCase();
-                                    return titleNormalized.includes(searchValueNormalized)
+                                    return video.title.includes(valorDoFiltro);
                                 })
                                 .map((video) => {
                                     return (
-                                        <a key={video.url} href={video.url}>
+                                        <a href={video.url}>
                                             <img src={video.thumb} />
-                                            <span>
-                                                {video.title}
-                                            </span>
+                                            <span>{video.title}</span>
                                         </a>
-                                    )
+                                    );
                                 })}
                         </div>
                     </section>

@@ -48,6 +48,7 @@ const StyledHeader = styled.div`
         border-radius: 50%;
     }
     .user-info {
+        margin-top: 50px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -55,16 +56,14 @@ const StyledHeader = styled.div`
     }
 `;
 
-const StyledBanner = styled.div`
+const styledBanner = styled.div`
     background-color: blue;
-    background-image: url(${({ bg }) => bg});
     height: 230px;
 `;
 
 function Header() {
     return (
         <StyledHeader>
-            <StyledBanner bg={config.bg}/>
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -82,17 +81,17 @@ function Header() {
 // converter da lista de nomes para components react
 
 function TimeLine({ searchValue, ...props }) {
-    // console.log('dentro do componente', props.playlists);
+    console.log('dentro do componente', props.playlists);
     const playlistNames = Object.keys(props.playlists);
     return (
         <StyledTimeline>
-            {playlistNames.map(function (playlistName) {
-                const videos = props.playlists[playlistName];
-                // console.log(playlistNames);
-                // console.log(videos);
+            {playlistNames.map(function (playlistNames) {
+                const videos = props.playlists[playlistNames];
+                console.log(playlistNames);
+                console.log(videos);
                 return (
-                    <section key={playlistName}>
-                        <h2>{playlistName}</h2>
+                    <section>
+                        <h2>{playlistNames}</h2>
                         <div>
                             {videos
                                 .filter((video) => {
